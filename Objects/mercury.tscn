@@ -1,0 +1,48 @@
+[gd_scene load_steps=8 format=3 uid="uid://cjbfnlth7xwlv"]
+
+[ext_resource type="Script" uid="uid://dylddo0i04q1w" path="res://Scripts/planet.gd" id="1_n278l"]
+[ext_resource type="AudioStream" uid="uid://badpb4orhmhy" path="res://Audio/tuba.wav" id="2_hymfr"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_n278l"]
+blend_mode = 1
+
+[sub_resource type="Gradient" id="Gradient_8e0k7"]
+offsets = PackedFloat32Array(0.806338, 1)
+colors = PackedColorArray(1, 1, 1, 0.46666667, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_xksgk"]
+gradient = SubResource("Gradient_8e0k7")
+width = 32
+height = 32
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.5)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fc0e3"]
+radius = 8.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_n278l"]
+radius = 16.0
+
+[node name="Mercury" type="Area2D"]
+modulate = Color(0.6650735, 0.3426169, 0.4234862, 1)
+material = SubResource("CanvasItemMaterial_n278l")
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_n278l")
+radius = 8.0
+point_value = 100
+sound = ExtResource("2_hymfr")
+gradient = SubResource("GradientTexture2D_xksgk")
+audio_name = "mercury"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_fc0e3")
+
+[node name="CancelPlacementArea" type="Area2D" parent="."]
+process_priority = -1
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CancelPlacementArea"]
+shape = SubResource("CircleShape2D_n278l")

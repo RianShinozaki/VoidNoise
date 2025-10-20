@@ -1,0 +1,41 @@
+[gd_resource type="Resource" script_class="InstrumentResource" load_steps=10 format=3 uid="uid://b7kaukvl5m53r"]
+
+[ext_resource type="AudioStream" uid="uid://pp21bvp4efnj" path="res://Audio/harp.wav" id="1_b164k"]
+[ext_resource type="Script" uid="uid://cif37qack7nva" path="res://Scripts/Note.gd" id="2_7wunf"]
+[ext_resource type="Script" uid="uid://die6sxnhdouxf" path="res://Scripts/instrument_resource.gd" id="3_2g3en"]
+
+[sub_resource type="Resource" id="Resource_8trul"]
+script = ExtResource("2_7wunf")
+metadata/_custom_type_script = "uid://cif37qack7nva"
+
+[sub_resource type="Resource" id="Resource_r0ucc"]
+script = ExtResource("2_7wunf")
+note = 9
+metadata/_custom_type_script = "uid://cif37qack7nva"
+
+[sub_resource type="Resource" id="Resource_hjc2c"]
+script = ExtResource("2_7wunf")
+note = 7
+metadata/_custom_type_script = "uid://cif37qack7nva"
+
+[sub_resource type="Resource" id="Resource_f8m47"]
+script = ExtResource("2_7wunf")
+octave = 4
+metadata/_custom_type_script = "uid://cif37qack7nva"
+
+[sub_resource type="Resource" id="Resource_6id1f"]
+script = ExtResource("2_7wunf")
+note = 10
+metadata/_custom_type_script = "uid://cif37qack7nva"
+
+[sub_resource type="Curve" id="Curve_7wunf"]
+_data = [Vector2(0, 0.91413474), 0.0, 0.0, 0, 0, Vector2(0.9738562, 0.3388375), 0.0, 0.0, 0, 0, Vector2(1, 0), -0.6768623, 0.0, 0, 0]
+point_count = 3
+
+[resource]
+script = ExtResource("3_2g3en")
+audio = ExtResource("1_b164k")
+melody = Array[ExtResource("2_7wunf")]([SubResource("Resource_8trul"), SubResource("Resource_r0ucc"), SubResource("Resource_hjc2c"), SubResource("Resource_f8m47"), SubResource("Resource_6id1f")])
+volume_curve = SubResource("Curve_7wunf")
+volume_curve_delta = 4.0
+metadata/_custom_type_script = "uid://die6sxnhdouxf"

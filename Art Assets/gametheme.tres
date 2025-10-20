@@ -1,0 +1,7 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://smhnld5uknpy"]
+
+[ext_resource type="FontFile" uid="uid://cox3fxceuj22q" path="res://Art Assets/Traffolight.otf" id="1_gwymo"]
+
+[resource]
+default_font = ExtResource("1_gwymo")
+Button/fonts/font = ExtResource("1_gwymo")

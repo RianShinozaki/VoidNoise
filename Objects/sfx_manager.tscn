@@ -1,0 +1,19 @@
+[gd_scene load_steps=8 format=3 uid="uid://dfuboyti7y610"]
+
+[ext_resource type="Script" uid="uid://bvamqeyckivom" path="res://Scripts/sfx_manager.gd" id="1_b0jx5"]
+[ext_resource type="Script" uid="uid://die6sxnhdouxf" path="res://Scripts/instrument_resource.gd" id="2_0c12b"]
+[ext_resource type="Resource" uid="uid://74gq056wijxq" path="res://Data/comet.tres" id="3_kl7cx"]
+[ext_resource type="Resource" uid="uid://ch16hd1ydt0n0" path="res://Data/star.tres" id="4_kwn8u"]
+[ext_resource type="Resource" uid="uid://cjkek2a0gk68f" path="res://Data/mercury.tres" id="5_3v53k"]
+[ext_resource type="Resource" uid="uid://b7kaukvl5m53r" path="res://Data/venus.tres" id="6_pb2cg"]
+[ext_resource type="Resource" uid="uid://dxggb1mjh481s" path="res://Data/mars.tres" id="7_pb2cg"]
+
+[node name="SFXManager" type="Node2D"]
+script = ExtResource("1_b0jx5")
+instruments_dictionary = Dictionary[String, ExtResource("2_0c12b")]({
+"comet": ExtResource("3_kl7cx"),
+"mars": ExtResource("7_pb2cg"),
+"mercury": ExtResource("5_3v53k"),
+"star": ExtResource("4_kwn8u"),
+"venus": ExtResource("6_pb2cg")
+})

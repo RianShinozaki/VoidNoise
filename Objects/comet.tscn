@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://l882pam7vx6n"]
+
+[ext_resource type="Script" uid="uid://dpbk1g2v3nhl8" path="res://Scripts/comet.gd" id="1_ceddl"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7jktm"]
+
+[node name="Comet" type="Area2D"]
+script = ExtResource("1_ceddl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_7jktm")

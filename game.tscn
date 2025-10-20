@@ -1,15 +1,240 @@
-[gd_scene load_steps=3 format=3 uid="uid://h7xe4jotgjto"]
+[gd_scene load_steps=24 format=3 uid="uid://h7xe4jotgjto"]
 
 [ext_resource type="Script" uid="uid://pv0knmvy0v48" path="res://Scripts/game.gd" id="1_e2o6t"]
+[ext_resource type="Script" uid="uid://dgk2bmrib6bj" path="res://Scripts/expand_space_button.gd" id="3_fc0e3"]
 [ext_resource type="Script" uid="uid://bmdqiuhrchwhr" path="res://Scripts/star_manager.gd" id="3_feb5d"]
+[ext_resource type="FontFile" uid="uid://cox3fxceuj22q" path="res://Art Assets/Traffolight.otf" id="3_j5wjh"]
+[ext_resource type="Script" uid="uid://bv6fei815bh35" path="res://Scripts/buy_star.gd" id="4_fc0e3"]
+[ext_resource type="Theme" uid="uid://smhnld5uknpy" path="res://Art Assets/gametheme.tres" id="4_hve3p"]
+[ext_resource type="Script" uid="uid://dh776nll2eyj4" path="res://Scripts/buy_planet.gd" id="5_7jktm"]
+[ext_resource type="PackedScene" uid="uid://cjbfnlth7xwlv" path="res://Objects/mercury.tscn" id="6_ryrav"]
+[ext_resource type="PackedScene" uid="uid://j82imt5abmml" path="res://Objects/venus.tscn" id="7_eow3j"]
+[ext_resource type="PackedScene" uid="uid://kkxhpwxuu8f" path="res://Objects/mars.tscn" id="9_vef74"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_e2o6t"]
+blend_mode = 1
+
+[sub_resource type="Gradient" id="Gradient_e2o6t"]
+offsets = PackedFloat32Array(0.2153558, 1)
+colors = PackedColorArray(1, 1, 1, 0.46666667, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_fc0e3"]
+gradient = SubResource("Gradient_e2o6t")
+width = 12
+height = 12
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.5)
+
+[sub_resource type="Gradient" id="Gradient_fc0e3"]
+offsets = PackedFloat32Array(0.2153558, 1)
+colors = PackedColorArray(0, 1, 1, 0.46666667, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_feb5d"]
+gradient = SubResource("Gradient_fc0e3")
+width = 12
+height = 12
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.5)
+
+[sub_resource type="LabelSettings" id="LabelSettings_j5wjh"]
+font = ExtResource("3_j5wjh")
+font_size = 25
+
+[sub_resource type="Animation" id="Animation_vef74"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_hve3p"]
+resource_name = "start"
+length = 10.0
+step = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 4, 5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 1.0, 1.0, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hve3p"]
+_data = {
+&"RESET": SubResource("Animation_vef74"),
+&"start": SubResource("Animation_hve3p")
+}
+
+[sub_resource type="Animation" id="Animation_mfdv2"]
+resource_name = "start"
+length = 10.0
+step = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(4, 5, 8, 9),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 1.0, 1.0, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mfdv2"]
+_data = {
+&"RESET": SubResource("Animation_vef74"),
+&"start": SubResource("Animation_mfdv2")
+}
+
+[sub_resource type="LabelSettings" id="LabelSettings_vef74"]
+font = ExtResource("3_j5wjh")
+font_size = 25
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ryrav"]
+radius = 16.0
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_e2o6t")
-current_space_size = Vector2(80, 80)
+current_space_size = Vector2(64, 64)
 
 [node name="StarManager" type="Node2D" parent="."]
 texture_filter = 1
+material = SubResource("CanvasItemMaterial_e2o6t")
 script = ExtResource("3_feb5d")
-speed = 100.0
+speed = 60.0
+star_gradient = SubResource("GradientTexture2D_fc0e3")
+comet_gradient = SubResource("GradientTexture2D_feb5d")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Title" type="Label" parent="."]
+offset_left = -64.0
+offset_top = -13.0
+offset_right = 63.0
+offset_bottom = 14.0
+text = "VOID NOISE"
+label_settings = SubResource("LabelSettings_j5wjh")
+visible_characters = 0
+visible_ratio = 0.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Title"]
+libraries = {
+&"": SubResource("AnimationLibrary_hve3p")
+}
+autoplay = "start"
+
+[node name="Instructions" type="Label" parent="."]
+offset_left = -88.0
+offset_top = 88.0
+offset_right = 84.0
+offset_bottom = 115.0
+text = "click the screen"
+label_settings = SubResource("LabelSettings_j5wjh")
+visible_characters = 0
+visible_ratio = 0.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Instructions"]
+libraries = {
+&"": SubResource("AnimationLibrary_mfdv2")
+}
+autoplay = "start"
+
+[node name="NoiseScore" type="Label" parent="."]
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(300, 100)
+offset_left = -152.0
+offset_top = -296.0
+offset_right = 148.0
+offset_bottom = -196.0
+text = "0"
+label_settings = SubResource("LabelSettings_vef74")
+horizontal_alignment = 1
+
+[node name="Control" type="Control" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 3
+anchors_preset = 0
+offset_left = -576.0
+offset_top = 224.0
+offset_right = 576.0
+offset_bottom = 256.0
+
+[node name="ExpandSpaceButton" type="Button" parent="Control"]
+layout_mode = 0
+offset_left = 498.22
+offset_top = -32.0
+offset_right = 608.22107
+theme = ExtResource("4_hve3p")
+text = "expand space"
+script = ExtResource("3_fc0e3")
+button_text = "Expand Space "
+cost_increase_factor = 5.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="BuyStar" type="Button" parent="Control/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("4_hve3p")
+text = "star"
+script = ExtResource("4_fc0e3")
+button_text = "Star "
+base_cost = 100
+cost_increase_factor = 1.2
+
+[node name="Buy Mercury" type="Button" parent="Control/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("4_hve3p")
+text = "mercury"
+script = ExtResource("5_7jktm")
+button_text = "Mercury "
+base_cost = 1000
+to_create = ExtResource("6_ryrav")
+
+[node name="Buy Venus" type="Button" parent="Control/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("4_hve3p")
+text = "venus"
+script = ExtResource("5_7jktm")
+button_text = "Venus "
+base_cost = 10000
+to_create = ExtResource("7_eow3j")
+
+[node name="Buy Mars" type="Button" parent="Control/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("4_hve3p")
+text = "mars"
+script = ExtResource("5_7jktm")
+button_text = "Mars "
+base_cost = 30000
+to_create = ExtResource("9_vef74")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_ryrav")

@@ -15,7 +15,21 @@ run/main_scene="uid://h7xe4jotgjto"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+SfxManager="*res://Objects/sfx_manager.tscn"
+
+[display]
+
+window/stretch/mode="viewport"
+
+[layer_names]
+
+2d_physics/layer_1="Object"
+2d_physics/layer_2="PlanetRange"
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+environment/defaults/default_clear_color=Color(0.08034026, 0.10712772, 0.20951709, 1)

@@ -1,0 +1,47 @@
+[gd_resource type="Resource" script_class="InstrumentResource" load_steps=10 format=3 uid="uid://74gq056wijxq"]
+
+[ext_resource type="AudioStream" uid="uid://hpaqhrqcv2n2" path="res://Audio/glockenspiel.wav" id="1_1vf8u"]
+[ext_resource type="Script" uid="uid://cif37qack7nva" path="res://Scripts/Note.gd" id="1_dm2tt"]
+[ext_resource type="Script" uid="uid://die6sxnhdouxf" path="res://Scripts/instrument_resource.gd" id="2_1vf8u"]
+
+[sub_resource type="Resource" id="Resource_8trul"]
+script = ExtResource("1_dm2tt")
+octave = 2
+metadata/_custom_type_script = "uid://cif37qack7nva"
+
+[sub_resource type="Resource" id="Resource_r0ucc"]
+script = ExtResource("1_dm2tt")
+note = 3
+octave = 2
+metadata/_custom_type_script = "uid://cif37qack7nva"
+
+[sub_resource type="Resource" id="Resource_hjc2c"]
+script = ExtResource("1_dm2tt")
+note = 5
+octave = 2
+metadata/_custom_type_script = "uid://cif37qack7nva"
+
+[sub_resource type="Resource" id="Resource_f8m47"]
+script = ExtResource("1_dm2tt")
+note = 7
+octave = 2
+metadata/_custom_type_script = "uid://cif37qack7nva"
+
+[sub_resource type="Resource" id="Resource_6id1f"]
+script = ExtResource("1_dm2tt")
+note = 10
+octave = 2
+metadata/_custom_type_script = "uid://cif37qack7nva"
+
+[sub_resource type="Curve" id="Curve_1vf8u"]
+_data = [Vector2(0, 0.91413474), 0.0, 0.0, 0, 0, Vector2(0.9738562, 0.3388375), 0.0, 0.0, 0, 0, Vector2(1, 0), -0.6768623, 0.0, 0, 0]
+point_count = 3
+
+[resource]
+script = ExtResource("2_1vf8u")
+audio = ExtResource("1_1vf8u")
+melody = Array[ExtResource("1_dm2tt")]([SubResource("Resource_8trul"), SubResource("Resource_r0ucc"), SubResource("Resource_hjc2c"), SubResource("Resource_f8m47"), SubResource("Resource_6id1f")])
+volume_curve = SubResource("Curve_1vf8u")
+volume_curve_delta = 4.0
+octave_steps = 1
+metadata/_custom_type_script = "uid://die6sxnhdouxf"
