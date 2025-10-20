@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://h7xe4jotgjto"]
+[gd_scene load_steps=29 format=3 uid="uid://h7xe4jotgjto"]
 
 [ext_resource type="Script" uid="uid://pv0knmvy0v48" path="res://Scripts/game.gd" id="1_e2o6t"]
 [ext_resource type="Script" uid="uid://dgk2bmrib6bj" path="res://Scripts/expand_space_button.gd" id="3_fc0e3"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://cjbfnlth7xwlv" path="res://Objects/mercury.tscn" id="6_ryrav"]
 [ext_resource type="PackedScene" uid="uid://j82imt5abmml" path="res://Objects/venus.tscn" id="7_eow3j"]
 [ext_resource type="PackedScene" uid="uid://kkxhpwxuu8f" path="res://Objects/mars.tscn" id="9_vef74"]
+[ext_resource type="PackedScene" uid="uid://daa15px0m06ui" path="res://Objects/jupiter.tscn" id="11_mfdv2"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_e2o6t"]
 blend_mode = 1
@@ -20,8 +21,8 @@ colors = PackedColorArray(1, 1, 1, 0.46666667, 0, 0, 0, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_fc0e3"]
 gradient = SubResource("Gradient_e2o6t")
-width = 12
-height = 12
+width = 20
+height = 20
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(1, 0.5)
@@ -107,18 +108,34 @@ _data = {
 font = ExtResource("3_j5wjh")
 font_size = 25
 
+[sub_resource type="LabelSettings" id="LabelSettings_hve3p"]
+font = ExtResource("3_j5wjh")
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_ryrav"]
 radius = 16.0
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_hve3p"]
+blend_mode = 1
+
+[sub_resource type="Gradient" id="Gradient_mfdv2"]
+offsets = PackedFloat32Array(0, 0.2428115, 0.39297125, 1)
+colors = PackedColorArray(0.9705263, 0.92979884, 0.90857375, 0.45490196, 0.9607843, 0.90588236, 0.9490196, 0.5803922, 1, 1, 1, 0.28627452, 0.9607843, 0.14509805, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_iotsf"]
+gradient = SubResource("Gradient_mfdv2")
+width = 128
+height = 128
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+
 [node name="Game" type="Node2D"]
 script = ExtResource("1_e2o6t")
-current_space_size = Vector2(64, 64)
 
 [node name="StarManager" type="Node2D" parent="."]
 texture_filter = 1
 material = SubResource("CanvasItemMaterial_e2o6t")
 script = ExtResource("3_feb5d")
-speed = 60.0
 star_gradient = SubResource("GradientTexture2D_fc0e3")
 comet_gradient = SubResource("GradientTexture2D_feb5d")
 
@@ -168,7 +185,6 @@ label_settings = SubResource("LabelSettings_vef74")
 horizontal_alignment = 1
 
 [node name="Control" type="Control" parent="."]
-modulate = Color(1, 1, 1, 0)
 layout_mode = 3
 anchors_preset = 0
 offset_left = -576.0
@@ -185,7 +201,9 @@ theme = ExtResource("4_hve3p")
 text = "expand space"
 script = ExtResource("3_fc0e3")
 button_text = "Expand Space "
+base_cost = 7000
 cost_increase_factor = 5.0
+description = "expand the margins of the world"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Control"]
 layout_mode = 1
@@ -199,42 +217,96 @@ alignment = 1
 [node name="BuyStar" type="Button" parent="Control/HBoxContainer"]
 layout_mode = 2
 theme = ExtResource("4_hve3p")
+action_mode = 0
 text = "star"
 script = ExtResource("4_fc0e3")
 button_text = "Star "
 base_cost = 100
 cost_increase_factor = 1.2
+description = "stars generate 10 noise when they collide"
 
 [node name="Buy Mercury" type="Button" parent="Control/HBoxContainer"]
+visible = false
 layout_mode = 2
 theme = ExtResource("4_hve3p")
+action_mode = 0
 text = "mercury"
 script = ExtResource("5_7jktm")
 button_text = "Mercury "
 base_cost = 1000
 to_create = ExtResource("6_ryrav")
+description = "generates 100 noise when collided with"
 
 [node name="Buy Venus" type="Button" parent="Control/HBoxContainer"]
+visible = false
 layout_mode = 2
 theme = ExtResource("4_hve3p")
+action_mode = 0
 text = "venus"
 script = ExtResource("5_7jktm")
 button_text = "Venus "
 base_cost = 10000
 to_create = ExtResource("7_eow3j")
+description = "generates 1000 noise when collided with"
 
 [node name="Buy Mars" type="Button" parent="Control/HBoxContainer"]
+visible = false
 layout_mode = 2
 theme = ExtResource("4_hve3p")
+action_mode = 0
 text = "mars"
 script = ExtResource("5_7jktm")
 button_text = "Mars "
 base_cost = 30000
 to_create = ExtResource("9_vef74")
+description = "generates 5000 noise when collided with"
+
+[node name="Buy Jupiter" type="Button" parent="Control/HBoxContainer"]
+visible = false
+layout_mode = 2
+theme = ExtResource("4_hve3p")
+action_mode = 0
+script = ExtResource("5_7jktm")
+button_text = "jupiter"
+base_cost = 100000
+to_create = ExtResource("11_mfdv2")
+description = "generates 20000 noise when collided with"
+
+[node name="PlanetInstructions" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -16.0
+offset_bottom = 2.000019
+grow_horizontal = 2
+grow_vertical = 2
+label_settings = SubResource("LabelSettings_hve3p")
+horizontal_alignment = 1
+
+[node name="Description" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = 24.0
+offset_bottom = 42.0
+grow_horizontal = 2
+grow_vertical = 2
+label_settings = SubResource("LabelSettings_hve3p")
+horizontal_alignment = 1
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 2
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+visible = false
 shape = SubResource("CircleShape2D_ryrav")
+
+[node name="Sprite2D" type="Sprite2D" parent="Area2D"]
+modulate = Color(1, 1, 1, 0.37254903)
+material = SubResource("CanvasItemMaterial_hve3p")
+texture = SubResource("GradientTexture2D_iotsf")

@@ -1,31 +1,36 @@
 [gd_resource type="Resource" script_class="InstrumentResource" load_steps=10 format=3 uid="uid://cjkek2a0gk68f"]
 
-[ext_resource type="AudioStream" uid="uid://badpb4orhmhy" path="res://Audio/tuba.wav" id="1_aokmu"]
+[ext_resource type="AudioStream" uid="uid://dkuljbf0o3y74" path="res://Audio/steeldrum.mp3" id="1_aokmu"]
 [ext_resource type="Script" uid="uid://cif37qack7nva" path="res://Scripts/Note.gd" id="2_x63nc"]
 [ext_resource type="Script" uid="uid://die6sxnhdouxf" path="res://Scripts/instrument_resource.gd" id="3_i7gf8"]
 
 [sub_resource type="Resource" id="Resource_8trul"]
 script = ExtResource("2_x63nc")
+octave = 2
 metadata/_custom_type_script = "uid://cif37qack7nva"
 
 [sub_resource type="Resource" id="Resource_r0ucc"]
 script = ExtResource("2_x63nc")
 note = 3
+octave = 2
 metadata/_custom_type_script = "uid://cif37qack7nva"
 
 [sub_resource type="Resource" id="Resource_hjc2c"]
 script = ExtResource("2_x63nc")
 note = 5
+octave = 2
 metadata/_custom_type_script = "uid://cif37qack7nva"
 
 [sub_resource type="Resource" id="Resource_f8m47"]
 script = ExtResource("2_x63nc")
 note = 7
+octave = 2
 metadata/_custom_type_script = "uid://cif37qack7nva"
 
 [sub_resource type="Resource" id="Resource_6id1f"]
 script = ExtResource("2_x63nc")
 note = 10
+octave = 2
 metadata/_custom_type_script = "uid://cif37qack7nva"
 
 [sub_resource type="Curve" id="Curve_aokmu"]

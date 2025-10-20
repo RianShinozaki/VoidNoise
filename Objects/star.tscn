@@ -6,6 +6,8 @@
 
 [node name="Star" type="Area2D"]
 script = ExtResource("1_hlbcs")
+speed = 25.0
+radius = 3.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_7jktm")

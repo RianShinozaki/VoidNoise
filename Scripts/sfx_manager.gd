@@ -24,6 +24,10 @@ static var instance: SFXManager
 var available_channels: Array[AudioStreamPlayer2D]
 var unavailable_channels: Array[AudioStreamPlayer2D]
 var queued_audio: Array[QueuedAudio]
+var chord_shift_index = 0
+var chord_shift_time = 0
+var chord_shift_max_time = 4
+@export var chord_shift: Array[int]
 
 @export var instruments_dictionary: Dictionary[String, InstrumentResource]
 
@@ -37,6 +41,12 @@ func _ready() -> void:
 		available_channels.append(_audio)
 
 func _process(_delta: float) -> void:
+	chord_shift_time += _delta
+	if chord_shift_time > chord_shift_max_time:
+		chord_shift_index += 1
+		chord_shift_time = 0
+		if chord_shift_index == chord_shift.size():
+			chord_shift_index = 0
 	for key in instruments_dictionary:
 		if instruments_dictionary[key].volume_curve_t < 1:
 			instruments_dictionary[key].volume_curve_t = move_toward(instruments_dictionary[key].volume_curve_t, 1, _delta * instruments_dictionary[key].volume_curve_delta)
@@ -53,8 +63,8 @@ static func queue_audio(_audio: String, _position: Vector2):
 
 func play_all_queued_audio():
 	if queued_audio.is_empty(): return
-	var _a = queued_audio[0]
-	play_sound_at_instance(_a.instrument, _a.position)
+	for _a in queued_audio:
+		play_sound_at_instance(_a.instrument, _a.position)
 	#print("all done")
 	queued_audio.clear()
 
@@ -74,7 +84,7 @@ func play_sound_at_instance(_instrument: InstrumentResource, _position: Vector2)
 	_sfx.stream = _instrument.audio
 	_sfx.position = _position
 	var _current_note = _instrument.melody[_instrument.melody_index]
-	var _step = float(_current_note.note + (12 * (_current_note.octave-3 + _instrument.current_octave_step)))
+	var _step = chord_shift[chord_shift_index] + float(_current_note.note + (12 * (_current_note.octave-3 + _instrument.current_octave_step)))
 	_sfx.pitch_scale = pow(2, _step/12)
 	
 	if _instrument.volume_curve_t >= 1:

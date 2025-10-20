@@ -1,7 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://j82imt5abmml"]
+[gd_scene load_steps=8 format=3 uid="uid://daa15px0m06ui"]
 
-[ext_resource type="Script" uid="uid://dylddo0i04q1w" path="res://Scripts/planet.gd" id="1_opngt"]
-[ext_resource type="Texture2D" uid="uid://cvy4o3jmbqkmv" path="res://Art Assets/Planet Assets/Planet Pixel/Planets/planet05.png" id="2_opngt"]
+[ext_resource type="Script" uid="uid://dylddo0i04q1w" path="res://Scripts/planet.gd" id="1_jdnyr"]
+[ext_resource type="Texture2D" uid="uid://hgtd0w3q2jv8" path="res://Art Assets/Planet Assets/Planet Pixel/Planets/planet02.png" id="2_puk23"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_n278l"]
 blend_mode = 1
@@ -13,8 +13,8 @@ colors = PackedColorArray(1, 1, 1, 0.46666667, 0, 0, 0, 0)
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_xksgk"]
 resource_local_to_scene = true
 gradient = SubResource("Gradient_8e0k7")
-width = 42
-height = 42
+width = 54
+height = 54
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(1, 0.5)
@@ -25,16 +25,16 @@ radius = 8.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_n278l"]
 radius = 16.0
 
-[node name="Venus" type="Area2D"]
-modulate = Color(0.96233314, 0.6381841, 0.85153735, 1)
+[node name="Jupiter" type="Area2D"]
+modulate = Color(0.93047994, 0.5485258, 0.58148617, 1)
 material = SubResource("CanvasItemMaterial_n278l")
 collision_layer = 0
 collision_mask = 2
-script = ExtResource("1_opngt")
-radius = 14.0
-point_value = 1000
+script = ExtResource("1_jdnyr")
+radius = 30.0
+point_value = 20000
 gradient = SubResource("GradientTexture2D_xksgk")
-audio_name = "venus"
+audio_name = "jupiter"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_fc0e3")
@@ -50,4 +50,4 @@ shape = SubResource("CircleShape2D_n278l")
 [node name="Art" type="Sprite2D" parent="."]
 position = Vector2(0, -4.7683716e-07)
 scale = Vector2(0.05, 0.05)
-texture = ExtResource("2_opngt")
+texture = ExtResource("2_puk23")

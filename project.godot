@@ -32,4 +32,4 @@ window/stretch/mode="viewport"
 
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
-environment/defaults/default_clear_color=Color(0.08034026, 0.10712772, 0.20951709, 1)
+environment/defaults/default_clear_color=Color(0.023669958, 0.032150958, 0.09631511, 1)

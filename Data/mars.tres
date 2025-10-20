@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="InstrumentResource" load_steps=9 format=3 uid="uid://dxggb1mjh481s"]
 
-[ext_resource type="AudioStream" uid="uid://dlr8185sfhtlr" path="res://Audio/violin.mp3" id="1_uvgkh"]
+[ext_resource type="AudioStream" uid="uid://d15a1hwe1kxc4" path="res://Audio/trumpet.wav" id="1_uvgkh"]
 [ext_resource type="Script" uid="uid://cif37qack7nva" path="res://Scripts/Note.gd" id="2_m5yel"]
 [ext_resource type="Script" uid="uid://die6sxnhdouxf" path="res://Scripts/instrument_resource.gd" id="3_oxtog"]
 

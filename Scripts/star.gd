@@ -2,11 +2,12 @@ class_name Star
 
 extends Area2D
 
-@export var direction: float
+var direction: float
+@export var speed: float
+@export var radius: float
 
 func _ready() -> void:
-	direction = randf_range(0, 2*PI)
-	$CollisionShape2D.shape.radius = StarManager.radius
+	$CollisionShape2D.shape.radius = radius
 	area_entered.connect(on_area_entered)
 	
 func on_area_entered(area: Area2D):

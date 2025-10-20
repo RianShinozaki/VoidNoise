@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://cjbfnlth7xwlv"]
 
 [ext_resource type="Script" uid="uid://dylddo0i04q1w" path="res://Scripts/planet.gd" id="1_n278l"]
-[ext_resource type="AudioStream" uid="uid://badpb4orhmhy" path="res://Audio/tuba.wav" id="2_hymfr"]
+[ext_resource type="Texture2D" uid="uid://bocs00armhgld" path="res://Art Assets/Planet Assets/Planet Pixel/Planets/planet06.png" id="2_n278l"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_n278l"]
 blend_mode = 1
@@ -11,6 +11,7 @@ offsets = PackedFloat32Array(0.806338, 1)
 colors = PackedColorArray(1, 1, 1, 0.46666667, 0, 0, 0, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_xksgk"]
+resource_local_to_scene = true
 gradient = SubResource("Gradient_8e0k7")
 width = 32
 height = 32
@@ -25,14 +26,12 @@ radius = 8.0
 radius = 16.0
 
 [node name="Mercury" type="Area2D"]
-modulate = Color(0.6650735, 0.3426169, 0.4234862, 1)
 material = SubResource("CanvasItemMaterial_n278l")
 collision_layer = 0
 collision_mask = 2
 script = ExtResource("1_n278l")
 radius = 8.0
 point_value = 100
-sound = ExtResource("2_hymfr")
 gradient = SubResource("GradientTexture2D_xksgk")
 audio_name = "mercury"
 
@@ -46,3 +45,8 @@ collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CancelPlacementArea"]
 shape = SubResource("CircleShape2D_n278l")
+
+[node name="Art" type="Sprite2D" parent="."]
+position = Vector2(0, -4.7683716e-07)
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("2_n278l")
